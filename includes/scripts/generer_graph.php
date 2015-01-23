@@ -2,45 +2,50 @@
 
 <?php
 
-	function valider(){
-  	if(isset($_POST['generer'])){
-    	generer_graph();
-  	}
-  }
-
 //fonction qui génére un graph en fonction des capteurs et des dates selectionnées
 	function generer_graph()
   {
-		if(isset($_POST['capteurs'])&& isset($_POST['dateDebut']) && isset($_POST['dateFin'])){
-			//echo "Interval du :";
-			//echo $_POST['dateDebut'];
-			//echo " au ";
-			//echo $_POST['dateFin'];
-			$dateDebut = $_POST['dateDebut'];
-			$dateFin = $_POST['dateFin'];
-			$donnees = [];
-			foreach($_POST['capteurs'] as $box) {
-				$capteur = getCapteur($box);
-				$dataCapteur = getData($capteur, $dateDebut, $dateFin);
-				//testPrint($dataCapteur); test pour afficher les valeurs du capteurs
-				array_push($donnees, $dataCapteur);
+  	$donnees = [];
+  	date_default_timezone_set('UTC');
+  	if(isset($_POST['generer'])){
+			if(isset($_POST['capteursId'])&& isset($_POST['dateDebut']) && isset($_POST['dateFin'])){
+				$dateDebut = $_POST['dateDebut'];
+				$dateFin = $_POST['dateFin'];
+				foreach($_POST['capteursId'] as $cap) {
+					$capteur = getCapteur($cap);
+					$dataCapteur = getData($capteur, $dateDebut, $dateFin);
+					array_push($donnees, $dataCapteur);
+				}
 			}
-			//printDonnees($donnees);
-			//echo $donnees[0];
-			//echo $donnees[1];
-			return $donnees;
-
+			else{
+				$idCapteurs = [1,7,10,16,19,22];
+				foreach($idCapteurs as $cap) {
+					$capteur = getCapteur($cap);
+					$dateDebut = $_POST['dateDebut'];
+					$dateFin = $_POST['dateFin'];
+					$dataCapteur = getData($capteur, $dateDebut, $dateFin);
+					array_push($donnees, $dataCapteur);
+				}
+			}
 		}
 		else{
-			echo "choisissez un capteur, et des dates";
-		}
+				$idCapteurs = [1,7,10,16,19,22];
+				foreach($idCapteurs as $cap) {
+					$capteur = getCapteur($cap);
+					$dateDebut = date('Y/j/m',mktime(0, 0, 0, date("m")  , date("d")-7, date("Y")));
+					$dateFin = date('Y/j/m',mktime(0, 0, 0, date("m")  , date("d"), date("Y")));
+					$dataCapteur = getData($capteur, $dateDebut, $dateFin);
+					array_push($donnees, $dataCapteur);
+				}
+			}
+			return $donnees;
 	}
 
 //fonction qui prend en paramètre le nom d'un capteur et renvoie le capteur
-	function getCapteur($nom){
+	function getCapteur($id){
 		global $connexion;
-		$pstmt = $connexion->prepare("Select * from capteur where nomC = :nom");
-    	$pstmt -> bindParam(':nom', $nom);
+		$pstmt = $connexion->prepare("Select * from capteur where idC = :id");
+    	$pstmt -> bindParam(':id', $id);
     	$pstmt -> execute();
    	 	$capteur = $pstmt -> fetch();
     	return $capteur;
@@ -76,12 +81,10 @@
 
     $i = 0;
     $data = array();
-    //$date = array(); non prise en compte de la date des données pour le moment
 
     foreach($stmt as $requete) {
     	$donneeX = array();
-    	//test
-    	//
+
     	$date_explosee = explode("-", $requete[0]);
   		$jourDeb = $date_explosee[2];
  			$moisDeb = $date_explosee[1]-1;
@@ -89,8 +92,6 @@
 
  			$jourHeure = explode(" ", $jourDeb);
  			$jour = $jourHeure[0];
- 			//test
-    	//
 
  			$temp = explode(":", $jourHeure[1]);
  			$heure = $temp[0];
