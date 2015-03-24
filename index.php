@@ -61,7 +61,8 @@
                 </div>
                 <div class="row">
                   <div class="twelve columns">
-                    <input class="button-primary u-full-width" type="submit" name="generer" value="Génerer">  
+                    <input class="button-primary u-full-width" type="submit" name="generer" value="Graphe par date"> 
+                    <input class="button-primary u-full-width" type="submit" name="profondeur" value="Graphe par profondeur"> 
                   </div>
                 </div>
               </form>
@@ -73,7 +74,14 @@
           <h5 class="section-header">Graphique des températures</h5>
           <div class="box">
             <div class="box-section">
-              <div id="chart"></div>
+              <?php
+              if(isset($_POST['profondeur'])!=true){
+                echo'<div id="chart"></div>';
+              }
+              else{
+                echo'<div id="chartProfondeur"></div>';
+              };
+              ?>
             </div>
           </div>
         </section>
@@ -107,7 +115,14 @@
     </div>
     <div class="push"></div>
     <?php include('includes/layout/footer.php'); ?>
-    <?php include("includes/scripts/graph.php"); ?>
+    <?php
+      if(!isset($_POST['profondeur'])){
+        //include("includes/scripts/graph.php");
+      }
+      else{
+        include("includes/scripts/grapheProfondeur.php");
+      }
+    ?>
     <script>
 
       $(document).ready(function() {

@@ -2,6 +2,7 @@
 <?php 
   $idCapt = isset($_POST["capteursId"]) ? $_POST["capteursId"] : [1,7,10,16,19,22];
 ?>
+
 <script>
 $.ajaxSetup({'async': false});
 
@@ -218,6 +219,5 @@ var oppppt = {
     oppppt.series = options.series;
 
     $('#chart').highcharts('StockChart', oppppt);
-
 
 </script>
