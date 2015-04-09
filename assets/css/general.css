@@ -1,0 +1,99 @@
+#global 
+{
+	overflow:auto;
+}
+
+body
+{
+	display:block;
+}
+
+select 
+{
+	margin-bottom: 20px;
+}
+
+.info
+{
+	background: url("../images/info28.png");
+	border:none;
+	display: block;
+	vertical-align: bottom;
+	background-repeat: no-repeat;
+}
+
+.delete
+{
+	background: url("../images/delete30.png");
+	border:none;
+	display: block;
+	vertical-align: bottom;
+	background-repeat: no-repeat;
+}
+
+.play
+{
+	background: url("../images/play43.png");
+	border:none;
+	display: block;
+	vertical-align: bottom;
+	background-repeat: no-repeat;
+}
+
+#gauche
+{
+	position: relative;
+	padding: 10px;
+	margin-top: 10px;
+	width: 25%;
+	float: left; 
+	text-align: center;
+}
+
+#droit
+{
+	position: relative;
+	padding: 10px;
+	margin-top: 10px;
+	width: 40%;
+	float: left;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+#arduinoBoard
+{
+	position: relative;
+	padding: 10px;
+	margin-top: 10px;
+	width: 20%;
+	margin-left: 10px;
+	float: left; 
+	text-align: center;
+}
+
+img
+{
+	width: 90%;
+	height: 60%;
+}
+
+#analog 
+{
+	float:left;
+	text-align: center;
+	margin-left: 20%;
+}
+
+#numeric 
+{
+	text-align: center; 
+	float: right;
+	margin-right: 15%;
+}
+
+#timeChoice
+{
+	width: 100px;
+}
