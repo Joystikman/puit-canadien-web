@@ -5,7 +5,7 @@
 function getDevices()
 {
   global $connexion;
-  $result = $connexion->prepare("SELECT * from Dispositif");
+  $result = $connexion->prepare("SELECT * from dispositif");
   $result->execute();
   return $result;
 }
@@ -14,7 +14,7 @@ function getDevices()
 function getIdByName($nameDispositif)
 {
   global $connexion;
-  $result = $connexion -> prepare("SELECT idD FROM Dispositif where nomD = :n");
+  $result = $connexion -> prepare("SELECT idD FROM dispositif where nomD = :n");
   $result -> bindParam(':n', $nameDispositif);
   $result -> execute();
   $data = $result->fetch(PDO::FETCH_ASSOC);
@@ -26,7 +26,7 @@ function getIdByName($nameDispositif)
 function getSensorName($id)
 {
   global $connexion;
-  $result = $connexion -> prepare("SELECT nomC FROM Capteur where idC = :i");
+  $result = $connexion -> prepare("SELECT nomC FROM capteur where idC = :i");
   $result -> bindParam(':i', $id);
   $result -> execute();
   $data = $result->fetch(PDO::FETCH_ASSOC);
@@ -38,7 +38,7 @@ function getSensorName($id)
 function getNameById($idDevice)
 {
   global $connexion;
-  $result = $connexion -> prepare("SELECT nomD FROM Dispositif where idD = :d");
+  $result = $connexion -> prepare("SELECT nomD FROM dispositif where idD = :d");
   $result -> bindParam(':d', $idDevice);
   $result -> execute();
   $data = $result->fetch(PDO::FETCH_ASSOC);
@@ -50,7 +50,7 @@ function getNameById($idDevice)
 function getSensorByDevice($idDispo)
 {
   global $connexion;
-  $result = $connexion -> prepare("SELECT * FROM Capteur WHERE idD= :i");
+  $result = $connexion -> prepare("SELECT * FROM capteur WHERE idD= :i");
   $result -> bindParam(':i', $idDispo);
   $result -> execute();
   $data = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -62,7 +62,7 @@ function getSensorByDevice($idDispo)
 function getInfoSensorID($id)
 {
   global $connexion;
-  $result = $connexion -> prepare("SELECT * FROM Capteur where idC = :i");
+  $result = $connexion -> prepare("SELECT * FROM capteur where idC = :i");
   $result -> bindParam(':i', $id);
   $result -> execute();
   $data = $result->fetch(PDO::FETCH_ASSOC);
@@ -74,7 +74,7 @@ function getInfoSensorID($id)
 function getInfoSensor($name)
 {
   global $connexion;
-  $result = $connexion -> prepare("SELECT * FROM Capteur where nomC = :n");
+  $result = $connexion -> prepare("SELECT * FROM capteur where nomC = :n");
   $result -> bindParam(':n', $name);
   $result -> execute();
   $data = $result->fetch(PDO::FETCH_ASSOC);
@@ -86,7 +86,7 @@ function getInfoSensor($name)
 function getSensorById($id)
 {
   global $connexion;
-  $result = $connexion -> prepare("SELECT * FROM Capteur where idC = :c");
+  $result = $connexion -> prepare("SELECT * FROM capteur where idC = :c");
   $result -> bindParam(':c', $id);
   $result -> execute();
   $data = $result->fetch(PDO::FETCH_ASSOC);
@@ -98,7 +98,7 @@ function getSensorById($id)
 function getArduinoBoard()
 {
   global $connexion;
-  $result = $connexion->prepare("SELECT * from Arduino");
+  $result = $connexion->prepare("SELECT * from arduino");
   $result->execute();
   return $result;
 }
@@ -107,7 +107,7 @@ function getArduinoBoard()
 function getIdArduinoByName($arduinoName)
 {
   global $connexion;
-  $result = $connexion -> prepare("SELECT idA FROM Arduino where nom = :n");
+  $result = $connexion -> prepare("SELECT idA FROM arduino where nom = :n");
   $result -> bindParam(':n', $arduinoName);
   $result -> execute();
   $data = $result->fetch(PDO::FETCH_ASSOC);
@@ -119,7 +119,7 @@ function getIdArduinoByName($arduinoName)
 function insertBranchement($idA, $port, $idC)
 {
   global $connexion;
-  $result = $connexion -> prepare("INSERT INTO Branchement VALUES (:a, :p, :c, NULL, NULL)");
+  $result = $connexion -> prepare("INSERT INTO branchement VALUES (:a, :p, :c, NULL, NULL)");
   $result -> bindParam(':a', $idA);
   $result -> bindParam(':p', $port);
   $result -> bindParam(':c', $idC);
@@ -131,7 +131,7 @@ function insertBranchement($idA, $port, $idC)
 function deleteBranchement($arduinoID, $port)
 {
   global $connexion;
-  $req = "DELETE FROM Branchement WHERE idA = :i and port = :p";
+  $req = "DELETE FROM branchement WHERE idA = :i and port = :p";
   $result = $connexion -> prepare($req);
   $result -> bindParam(':i', $arduinoID);
   $result -> bindParam(':p', $port);
@@ -141,7 +141,7 @@ function deleteBranchement($arduinoID, $port)
 function getArduinoInfoByID($id)
 {
   global $connexion;
-  $result = $connexion -> prepare("SELECT * FROM Arduino where idA = :i");
+  $result = $connexion -> prepare("SELECT * FROM arduino where idA = :i");
   $result -> bindParam(':i', $id);
   $result -> execute();
   $data = $result->fetch(PDO::FETCH_ASSOC);
@@ -152,7 +152,7 @@ function getArduinoInfoByID($id)
 function getBranchement()
 {
   global $connexion;
-  $result = $connexion->prepare("SELECT * from Branchement");
+  $result = $connexion->prepare("SELECT * from branchement");
   $result->execute();
   return $result;
 }
@@ -161,7 +161,7 @@ function getBranchement()
 function getSensorInBranchement()
 {
   global $connexion;
-  $result = $connexion->prepare("SELECT idC from Branchement");
+  $result = $connexion->prepare("SELECT idC from branchement");
   $result->execute();
   return $result;
 }
@@ -170,7 +170,7 @@ function getSensorInBranchement()
 function getBranchementByArduinoID($idArduino)
 {
   global $connexion;
-  $result = $connexion->prepare("SELECT * FROM Branchement WHERE idA = :i");
+  $result = $connexion->prepare("SELECT * FROM branchement WHERE idA = :i");
   $result -> bindParam(':i', $idArduino);
   $result->execute();
   return $result->fetchAll(PDO::FETCH_ASSOC);
@@ -182,11 +182,11 @@ function getPin($var, $id)
   global $connexion;
   if ($var == "analog")
   {
-    $result = $connexion -> prepare("SELECT nbPanalog FROM Arduino where idA = :i");
+    $result = $connexion -> prepare("SELECT nbPanalog FROM arduino where idA = :i");
   }
   else if ($var == "numeric")
   {
-    $result = $connexion -> prepare("SELECT nbPNum FROM Arduino where idA = :i");
+    $result = $connexion -> prepare("SELECT nbPNum FROM arduino where idA = :i");
   }
   $result -> bindParam(':i', $id);
   $result -> execute();
@@ -203,7 +203,7 @@ function getPin($var, $id)
 function getTime($idC)
 {
   global $connexion;
-  $result = $connexion->prepare("SELECT temps FROM Capteur WHERE idC = :i");
+  $result = $connexion->prepare("SELECT temps FROM capteur WHERE idC = :i");
   $result -> bindParam(':i', $idC);
   $result->execute();
 
@@ -218,7 +218,7 @@ function getTime($idC)
 function updateSensor($time, $id)
 {
   global $connexion;
-  $result = $connexion->prepare("UPDATE Capteur SET temps = :t WHERE idc = :i");
+  $result = $connexion->prepare("UPDATE capteur SET temps = :t WHERE idc = :i");
   $result -> bindParam(':t', $time);
   $result -> bindParam(':i', $id);
   $result->execute();
@@ -228,7 +228,7 @@ function updateSensor($time, $id)
 function updateConnection($bool, $port, $idA)
 {
   global $connexion;
-  $result = $connexion->prepare("UPDATE Branchement SET enregistre = :e WHERE port = :p and idA = :i");
+  $result = $connexion->prepare("UPDATE branchement SET enregistre = :e WHERE port = :p and idA = :i");
   $result -> bindParam(':e', $bool);
   $result -> bindParam(':p', $port);
   $result -> bindParam(':i', $idA);
@@ -239,7 +239,7 @@ function updateConnection($bool, $port, $idA)
 function getLastValueSave($idArduino, $port)
 {
   global $connexion;
-  $result = $connexion->prepare("SELECT valeurActuelle FROM Branchement WHERE idA = :o and port = :p");
+  $result = $connexion->prepare("SELECT valeurActuelle FROM branchement WHERE idA = :o and port = :p");
   $result -> bindParam(':o', $idArduino);
   $result -> bindParam(':p', $port);
   $result->execute();
