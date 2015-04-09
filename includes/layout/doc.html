@@ -3,10 +3,10 @@
 	<nav class="bs-docs-sidebar">
 		<ul id="sidebar" class="nav sub-nav">
    		<li>
-   			<a href="#GroupA">L'application web</a>
+   			<a href="#GroupA" class="subnav-title">L'application web</a>
    		</li>
    		<li>
-   			<a href="#GroupB">Les vues 3D</a>
+   			<a href="#GroupB" class="subnav-title">Les vues 3D</a>
 				<ul>
 					<li><a href="#GroupBSub1">Se déplacer</a></li>
 					<li><a href="#GroupBSub2">Zoomer</a></li>
@@ -15,7 +15,7 @@
 				</ul>
    			</li>
    		<li>
-   			<a href="#GroupC">Le graphique</a>
+   			<a href="#GroupC" class="subnav-title">Le graphique</a>
 				<ul>
 					<li><a href="#GroupCSub1">Définir un intervalle</a></li>
 					<li><a href="#GroupCSub2">Ajuster l'échelle</a></li>
@@ -24,19 +24,20 @@
 				</ul>
    		</li>
    		<li>
-   			<a href="#GroupD">Le tableau statistique</a>
+   			<a href="#GroupD" class="subnav-title">Le tableau statistique</a>
    				<ul>
 					<li><a href="#GroupDSub1">Trier le tableau</a></li>
 				</ul>
    		</li>
    		<li>
-   			<a href="#GroupE">L'administration</a>
+   			<a href="#GroupE" class="subnav-title">L'administration</a>
    				<ul>
 					<li><a href="#GroupESub1">Ajouter un capteur</a></li>
 					<li><a href="#GroupESub2">Supprimer un capteur</a></li>
 					<li><a href="#GroupESub3">Ajouter un dispositif</a></li>
 					<li><a href="#GroupESub4">Supprimer un dispositif</a></li>
 					<li><a href="#GroupESub5">Ajouter une carte Arduino</a></li>
+					<li><a href="#GroupESub6">Connexion des capteurs</a></li>
 				</ul>
    		</li>
 
@@ -119,6 +120,10 @@
 			<div class="subgroup" id="GroupESub5">
 				<h6>Ajouter une carte Arduino</h6>
 				<p>Pour ajouter une carte arduino, il faut se rendre dans l'onglet "Arduino". Pour l'ajouter il faut lui renseigner un nom ainsi que l'adresse MAC de la carte Arduino à connecter.<img src="assets/images/illustrationAide/ajoutArduino.PNG" alt="testimage" class="responsive-image"></p>
+			</div>
+			<div class="subgroup" id="GroupESub6">
+				<h6>Connexion des capteurs</h6>
+				<p>PPour connecter un capteur, sélectionnez un dispositif et une carte Arduino dans les listes déroulantes. Une fois ces deux éléments sélectionnés, cliquez sur un capteur et faites le glisser jusqu’au port de la carte Arduino où le capteur doit être connecté. Une fois le capteur placé dans son port, plusieurs boutons apparaissent dans la zone concernée. Un premier bouton permet d’obtenir des informations sur le capteur connecté, un second bouton permet de démarrer l’enregistrement des données renvoyées par le capteur. Lorsque le capteur est connecté, les données ne sont pas enregistrées directement. Pour enregistrer directement, cliquez sur le bouton “play”. Cette fonctionnalité permet de laisser un capteur connecté sans se préoccuper des valeurs renvoyées par celui-ci. Ce bouton est réversible, donc pour stopper l’enregistrement, cliquez sur “pause”. Pour supprimer un branchement, cliquez sur le troisième bouton apparu précédemment et le branchement sera supprimé. Sur cette interface, il est possible de modifier l’intervalle de temps d’envoi des données. Pour cela, dès qu’un capteur est connecté, un liste déroulante apparaît dans la partie inférieure de la page. Cette liste contient tous les capteurs qui sont connectés. Lors de la sélection d’un de ces capteurs, un champs texte apparaît en dessous de la liste déroulante contenant la valeur actuelle. Pour modifier la valeur, saisissez en une autre et validez la modification.</p>
 			</div>
 		</section>
 	</div>

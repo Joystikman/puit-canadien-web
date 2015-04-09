@@ -729,9 +729,12 @@ html, body {
 .sub-nav {
   position: fixed;
   margin-top: 0.35em;
-  margin-bottom: 1em; }
+  margin-bottom: 0.25em; }
   .sub-nav li {
-    list-style: none; }
+    list-style: none;
+    margin-bottom: 0.25em; }
+    .sub-nav li ul {
+      margin: 1rem 0 1rem 1.5rem; }
     .sub-nav li a {
       font-family: "Gotham-Book", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-size: 14px;
@@ -747,6 +750,9 @@ html, body {
 
 .subgroup a {
   width: 50px; }
+
+.subnav-title {
+  font-family: "Gotham-Medium", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif !important; }
 
 @media (max-width: 750px) {
   .sub-nav {

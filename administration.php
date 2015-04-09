@@ -28,6 +28,7 @@
       $(function() {
         $( "#selectable" ).selectable();
         $( "#selectable2" ).selectable();
+        $("#selectable3").selectable();
       });
 
     $('#supprCapteur').click(function () {
@@ -47,6 +48,15 @@
 		  all = 'oui';
 	    }
         $.post('admin/supprDispositif.php', { id : tmp, tout : all })
+          .done(function (data) { location.reload(); })
+          .fail(function (data) {});
+      });
+    });
+
+    $('#supprArduino').click(function () {
+      $('#selectable3 .ui-widget-content.ui-selected').each(function(index) {
+        var tmp = $(this).attr('data-userid');
+        $.post('admin/supprArduino.php', { id : tmp })
           .done(function (data) { location.reload(); })
           .fail(function (data) {});
       });
@@ -89,7 +99,8 @@
       <ul class="resp-tabs-list hor_1">
         <li>Gérer capteur</li>
         <li>Gérer dispositifs</li>
-        <li>Impoter/Exporter</li>
+        <!-- A FAIRE : Lire les .dat dans Importer/Exporter -->
+        <!-- <li>Impoter/Exporter</li>  -->
         <li>Arduino</li>
       </ul>
       <div class="resp-tabs-container hor_1">
@@ -214,7 +225,7 @@
           <button type="button" class="button-primary u-pull-right" id="supprDispositif">Supprimer</button>
           <div class="u-cf"></div>
         </div>
-        <div>
+        <!-- <div>
           <br>
           <h6>Import d'un fichier .sql</h6>
           <form name="import" enctype="multipart/form-data" action="admin/backupBase.php" method="post">
@@ -241,7 +252,7 @@
             <input type="submit" class="button-primary u-pull-right" value="Valider">
           </form>
           <div class="u-cf"></div>
-        </div>
+        </div> -->
         <div>
           <br>
           <h6>Ajouter un arduino</h6>
@@ -252,13 +263,38 @@
                 <input type="text" class="u-full-width" name="nom" id="nom">
               </div>
               <div class="six columns">
-                <label for="nom">Adresse Mac :</label>
+                <label for="address">Adresse Mac :</label>
                 <input type="text" class="u-full-width" name="address" id="address">
+              </div>
+            </div>
+            <div class="row">
+              <div class="six columns">
+                <label for="nbAnalogique">Nombre de ports analogiques :</label>
+                <input type="text" class="u-full-width" name="nbAnalogique" id="nbAnalogique">
+              </div>
+              <div class="six columns">
+                <label for="nbNumerique">Nombre de ports numériques :</label>
+                <input type="text" class="u-full-width" name="nbNumerique" id="nbNumerique">
               </div>
             </div>
             <input type="submit" class="button-primary u-pull-right" value="Ajouter">
           </form>
           <div class="u-cf"></div>
+          <h6>Supprimer des arduino</h6>
+          <div class="tabs-listeSondes">
+            <ul id="selectable3">
+            <?php
+              $res = infoArduino();
+              while($data = $res->fetch(PDO::FETCH_ASSOC)) {
+                echo '<li class="ui-widget-content" data-userid="' . $data['idA'] . '">' . $data['nom'] . '</li>';
+              }
+            ?>
+            </ul>
+          </div>
+          <button type="button" class="button-primary u-pull-right" id="supprArduino">Supprimer</button>
+          <div class="u-cf"></div>
+          <h6>Création des branchements</h6>
+          <a href="arduino.php">Accèder à l'interface de modification des branchements</a>
         </div>
       </div>
     </div>
